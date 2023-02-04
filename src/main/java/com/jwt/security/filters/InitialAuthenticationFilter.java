@@ -25,7 +25,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class InitialAuthenticationFilter extends OncePerRequestFilter {
 
-    private final AuthenticationManager manager;
+    private AuthenticationManager manager;
 
     @Value("${jwt.signing.key}")
     private String signingKey;

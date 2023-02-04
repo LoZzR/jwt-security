@@ -16,16 +16,15 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 
 @Configuration
-@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final InitialAuthenticationFilter initialAuthenticationFilter;
+    private InitialAuthenticationFilter initialAuthenticationFilter;
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private final OtpAuthenticationProvider otpAuthenticationProvider;
+    private OtpAuthenticationProvider otpAuthenticationProvider;
 
-    private final UsernamePasswordAuthenticationProvider usernamePasswordAuthenticationProvider;
+    private UsernamePasswordAuthenticationProvider usernamePasswordAuthenticationProvider;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
@@ -56,5 +55,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
+    }
+
+    @Autowired
+    public void setInitialAuthenticationFilter(InitialAuthenticationFilter initialAuthenticationFilter) {
+        this.initialAuthenticationFilter = initialAuthenticationFilter;
+    }
+
+    @Autowired
+    public void setJwtAuthenticationFilter(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
+
+    @Autowired
+    public void setOtpAuthenticationProvider(OtpAuthenticationProvider otpAuthenticationProvider) {
+        this.otpAuthenticationProvider = otpAuthenticationProvider;
+    }
+
+    @Autowired
+    public void setUsernamePasswordAuthenticationProvider(UsernamePasswordAuthenticationProvider usernamePasswordAuthenticationProvider) {
+        this.usernamePasswordAuthenticationProvider = usernamePasswordAuthenticationProvider;
     }
 }
