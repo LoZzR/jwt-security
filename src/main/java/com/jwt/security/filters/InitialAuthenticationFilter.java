@@ -22,9 +22,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @Component
-@RequiredArgsConstructor
 public class InitialAuthenticationFilter extends OncePerRequestFilter {
 
+    @Autowired
     private AuthenticationManager manager;
 
     @Value("${jwt.signing.key}")
